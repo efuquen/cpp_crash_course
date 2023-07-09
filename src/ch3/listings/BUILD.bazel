@@ -4,3 +4,10 @@ cc_binary(
         "3-1.cpp",
     ],
 )
+
+cc_binary(
+    name = "3-2",
+    srcs = [
+        "3-2.cpp",
+    ],
+)
