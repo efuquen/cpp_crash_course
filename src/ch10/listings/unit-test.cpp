@@ -19,7 +19,7 @@ struct BrakeCommand {
 
 template <typename T>
 struct AutoBrake {
-  AutoBrake(const T& publish) : publish{ publish } { }
+  AutoBrake(const T& publish) : speed_mps{}, publish{ publish } { }
   void observe(const SpeedUpdate& cd) { }
   void observe(const CarDetected& cd) { }
   void set_collision_threshold_s(double x) {
@@ -51,6 +51,15 @@ void initial_speed_is_zero() {
         auto_brake.get_speed_mps()) + " speed not equal 0").c_str());
 }
 
+void initial_sensitivity_is_five() {
+  AutoBrake auto_brake{ [](const BrakeCommand&) {} };
+  assert_that(
+    auto_brake.get_collision_threshold_s() == 5L,
+    (std::to_string(
+      auto_brake.get_collision_threshold_s()) + " sensitivity is not 5"
+      ).c_str());
+}
+
 void run_test(void(*unit_test)(), const char* name) {
   try {
     unit_test();
@@ -62,4 +71,5 @@ void run_test(void(*unit_test)(), const char* name) {
 
 int main() {
   run_test(initial_speed_is_zero, "initial speed is 0");
+  run_test(initial_sensitivity_is_five, "initial sensitivity is 5");
 }
