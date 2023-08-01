@@ -19,7 +19,8 @@ struct BrakeCommand {
 
 template <typename T>
 struct AutoBrake {
-  AutoBrake(const T& publish) : speed_mps{}, publish{ publish } { }
+  AutoBrake(const T& publish)
+    : collision_threshold_s{ 5 }, speed_mps{}, publish{ publish } { }
   void observe(const SpeedUpdate& cd) { }
   void observe(const CarDetected& cd) { }
   void set_collision_threshold_s(double x) {
