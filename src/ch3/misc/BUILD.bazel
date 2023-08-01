@@ -1,0 +1,13 @@
+cc_binary(
+    name = "give_shell",
+    srcs = [
+        "give_shell.cpp",
+    ],
+)
+
+cc_binary(
+    name = "rop",
+    srcs = [
+        "rop.cpp",
+    ],
+)
