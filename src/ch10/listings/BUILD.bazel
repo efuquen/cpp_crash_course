@@ -1,6 +1,6 @@
 cc_binary(
-    name = "10-8",
+    name = "unit-test",
     srcs = [
-        "10-8.cpp",
+        "unit-test.cpp",
     ],
 )
