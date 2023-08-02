@@ -4,3 +4,10 @@ cc_binary(
         "unit-test.cpp",
     ],
 )
+
+cc_binary(
+    name = "service-bus-test",
+    srcs = [
+        "service-bus-test.cpp",
+    ],
+)
