@@ -11,3 +11,11 @@ cc_binary(
         "service-bus-test.cpp",
     ],
 )
+
+cc_binary(
+    name = "init-gmock",
+    srcs = [
+        "init-gmock.cpp",
+    ],
+    deps = ["@com_google_googletest//:gtest_main"],
+)
