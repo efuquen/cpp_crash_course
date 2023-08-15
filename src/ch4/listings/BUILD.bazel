@@ -1,0 +1,6 @@
+cc_binary(
+    name = "4-6",
+    srcs = [
+        "4-6.cpp",
+    ],
+)
