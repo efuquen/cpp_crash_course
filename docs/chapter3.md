@@ -52,21 +52,55 @@ right-hand side (rhs). See [`src/ch3/listing/3-2.cpp`](
 
 ## The Member-of-Pointer Operator
 
+Short description of how `clock_ptr->get_year()` is a notional short hand for `(*clock_ptr).get_year()`.
+
 ## Pointers and Arrays
+
+Arrays act similarly to pointers, just storing an extra piece of data, the length of the array. Arrays
+can be passed into variables that expect a pointer, 'decaying' into a pointer and lossing it's
+length information. The pointed to location is always the first element of the array.
 
 ### Handling Decay
 
+Pass in the size of an array and it's pointers. Square brackets `[]` can also be used on pointers.
+
 ### Pointer Arithmetic
+
+Adding numeric values to a pointer is an alternatives to a square bracket and dereferencing syntax.
+The compiler knows how large the pointer is and will travel that far in memory to the next value.
 
 ## Pointers Are Dangerous
 
+All the pointer manipulations above are dangerous.
+
 ### Buffer Overflows
+
+You can go past the points of an array without any warning or error. Aside from getting garbage
+data that can crash your program the far worse thing is this a common form of security
+vulnerability.
+
+More details on security vulnerability:
+
+https://owasp.org/www-community/vulnerabilities/Buffer_Overflow
 
 ### Brackets and Pointer Arithmetic
 
+This basically just shows the same vulnerability with pointer arthmetic, which as already
+discussed is just a replacement for square bracket access.
+
 ## void & std::byte Pointers
 
+You can use `void*` when you need to pass a pointer but the type doesn't matter. You cannnot
+dereference or use pointer arthmetic.
+
+If  you need to access the raw bytes use `std::byte`.
+
+NOTE: Examples would be useful here.
+
 ## nullptr & Boolean Expressions
+
+A `nullptr` indicates an empty pointer value and will evaluate to a `false` boolean expression,
+while all other values would evaluate to `true`.
 
 # References
 
