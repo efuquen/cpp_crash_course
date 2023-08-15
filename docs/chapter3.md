@@ -134,26 +134,55 @@ See [`src/ch3/listing/3-10.cpp`](
 
 ## Employing References
 
+Emphasizes that references can't be reassigned with an example.
+
 ## this Pointers
+
+Describes how in classes the keyword `this` is a pointer to the current object.
 
 ## const Correctness
 
+Introduces `const` as compile enforcement of immutability, use it!
+
 ### const Arguments
+
+`const` references and pointers function arguments enforce read-only arguments.
 
 ### const Methods
 
+A `const` method cannot modify it's object's state. `const` arguments can only
+be used with `const` methods, `const` is viral.
+
 ## const Member Variables
+
+A `const` member of a class can never be modified, even if the `struct` itself
+is not passed in as a `const` argument.
 
 ## Member Initializer Lists
 
+You can initialize `const` member variables with initialization lists.
+Afterwards they cannot be modified.
+
 # auto Type Deduction
+
+Type inference in C++.
 
 ## Initialization with auto
 
+Prefer universal initilization, covered prevoiusly. Benefits of `auto` is it
+saves typing and is more reslient to refactoring.
+
+**Question 3.4**: *The text makes no mention of cons, what could be the cons of*
+*using `auto`?*
+
 ## auto and Reference Types
+
+You can add modifiers to to `auto` like references, pointers, and `const`.
 
 ## auto and Code Refactorings
 
+Gives example of easier refactorings with `auto`.
 
+**As a general rule, use `auto` always.**
 
-
+The above is a controversial opinion.
