@@ -4,3 +4,10 @@ cc_binary(
         "4-6.cpp",
     ],
 )
+
+cc_binary(
+    name = "simple-string",
+    srcs = [
+        "simple-string.cpp",
+    ]
+)
