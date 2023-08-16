@@ -5,3 +5,9 @@ http_archive(
   urls = ["https://github.com/google/googletest/archive/5ab508a01f9eb089207ee87fd547d290da39d015.zip"],
   strip_prefix = "googletest-5ab508a01f9eb089207ee87fd547d290da39d015",
 )
+
+http_archive(
+    name = "catch2",
+    strip_prefix = "Catch2-2.13.5",
+    urls = ["https://github.com/catchorg/Catch2/archive/v2.13.5.tar.gz"],
+)

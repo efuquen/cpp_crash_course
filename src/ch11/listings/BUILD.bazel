@@ -1,0 +1,10 @@
+cc_test(
+    name = "oath-breakers",
+    srcs = [
+        "oath-breakers.cpp"
+    ],
+    defines = ["CATCH_CONFIG_MAIN"],
+    deps = [
+        "@catch2",
+    ],
+)
