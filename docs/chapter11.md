@@ -144,8 +144,41 @@ would want to.
 
 # Weak Pointers
 
+`weak_ptr` has no ownership on the object, but tracks the object and *could*
+be converted to a `shared_ptr` as long as the original object exists. An example
+of a cache is used to illustrate a use case. Can be viewed as a temporary
+read-only view of an object.
+
+## Constructing
+
+`weak_ptr` construct only takes in a `shared_ptr` or another `weak_ptr`.
+
+## Obtaining Temporary Ownership
+
+Use the `lock` method to generate a `shared_ptr`, if the tracked object no
+longer exists then this `shared_ptr` will be `empty`.
+
+## Advanced Patterns
+
+Quickly introduces `std::enabled_shared_from_this`. Classes that inherit
+from this have `shared_from_this` and `weak_from_this` methods to generated
+`shared_ptr` and `weak_ptr` on themselves. It's unclear the benefit of this.
+
+**NOTE**: *More on the why here: <https://stackoverflow.com/a/712307>*
+
 # Intrusive Pointers
 
-# Summary of Smart Pointer Options
+A boost type of pointer, used to store objects that have their own embedded
+reference count. It provides functions on adding and releasing references
+that you could then use to update the embedded reference count.
 
 # Allocators
+
+The default allocator uses `new` and `delete` to allocate and deallocate memory
+from the heap for dynamic objects. For applications that need absolute best
+performance a custom allocator could be more efficient then the default free
+store. You should have good reason to do this, to tune allocations for your
+specific use case.
+
+Answers to this question gives examples of use-cases:
+<https://stackoverflow.com/q/826569>
