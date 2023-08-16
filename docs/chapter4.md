@@ -242,26 +242,84 @@ will delete the same buffers.
 
 ## Copy Constructors
 
+A copy constructor on `SimpleString` would allocate a new buffer and copy it's
+contents, eliminating the two pointers to the same data.
+
+Now `SimpleString` passed by value into a function creates a valid copy.
+
 ## Copy Assignment
+
+Copy assignment must implement your own copy operator, `operator=`. Like with
+copy constructors if you have dynamic variables in the class chaos will
+ensue if you don't implement a custom copy assignment operator.
+
+Implemented for `SimpleString`.
+
+**Question 4.4**: *Why note call the destructor of `this` instead of*
+*reimplenting buffer deletion?*
 
 ## Default Copy
 
+Good practice to explicitly add `default` copy constructors and assignment
+operators to indicate you want them.
+
+Use `delete` if a class should never be copied, will result in a compile-time
+error.
+
 ## Copy Guidelines
+
+Descriptions of Correctness, Independence, & Equivalence guidlines. Covered
+in-depth above.
 
 # Move Semantics
 
+Transfer ownership of data instead of doing an expensive copy. The object
+moved from can only be re-assigned or destroyed. Not just renaming, the objects
+and storage are separate.
+
 ## Copying Can Be Wasteful
+
+If you never use the original object again doing a copy is wasteful when the
+data could just be moved. But you have to ensure the original is indeed never
+used again.
 
 ## Value Categories
 
+`value` soup in C++, focus on `lvalue` and `rvalue` here. An `lvalue` is any
+value that has a name, and `rvalue` is 'everything else'.
+
+In 'general' these refer to the side a value is on the `=`, left or right.
+Not totally valid, i.e. for copy assignment.
+
 ## lvalue and rvalue References
+
+The single `&` reference indicates an `lvalue` while `&&` is an rvalue.
 
 ## The std::move Function
 
+`std::move` will force an `lvalue` reference to be treated as an `rvalue`
+reference. `std::rvalue` would have been a better name, as nothing is actually
+moved by calling this, just cast.
+
+An `lvalue` cannot be moved while an `rvalue` can be. If you cast the `lvalue`
+to an `rvalue` you are responsible to ensure it is reassigned or destroyed.
+
 ## Move Construction
+
+Works on `rvalue` references and should 'zero out' the other object and reassign
+it's values to `this`. Mark as `noexcept` to ensure the compiler won't prefer
+a copy constructor.
 
 ## Move Assignment
 
+Analog to Copy assignment, you must do the same as Move constructor but ensure
+the moved to (`this`)  object is unallocated.
+
 ## The Final Product
 
+Final code of `SimpleString`
+
 ## Compiler Generated Methods
+
+Complicated rules for how the 5 main methods for move & copy are generated.
+Avoid this by always explicitly setting them.
