@@ -77,7 +77,70 @@ Allows the use of `[]` index operator with a dynamic array.
 
 # Unique Pointers
 
+A `unique_ptr` is *transferable* (can be moved) but still have exclusive
+ownership (can't be copied). Part of standard library in `<memory>` header.
+
+**Question 11.1**: *Why would we not just use the standard library `unique_ptr`*
+*over boost dependency `scoped_ptr`?*
+
+## Constructing
+
+Can be constructed in the same way as a `scoped_ptr`, but has one other way,
+using `make_unique<T>()`. Latest C++ it doesn't matter which version you use.
+
+## Supported Operations
+
+All the same ones as `scoped_ptr`.
+
+## Transferable, Exclusive Ownership
+
+Shows how `move` works with a `unique_ptr`.
+
+## Unique Arrays
+
+`unique_ptr` supports arrays directly, but be careful not to accidently set
+an dynamic array `[]T` to a pointer that has `T`. The compiler can't catch it
+and it will not properly clean up the dynamic array.
+
+## Deleters
+
+A second template paramter to `unique_ptr` specifies a `Deleter`, which a
+default implementation just calls `delete` or `delete[]` on the object or array.
+
+You can specify a custom deleter which is just a function that takes in a `*T`
+type. More on `decltype`: <https://en.wikipedia.org/wiki/Decltype>
+
+## Custom Deleters and System Programming
+
+Example of need for custom Deleter with system programming. A `*FILE` handle
+shoudl have `fclose()` called to release the file resource, not `delete`.
+
+**Question 11.2**: *Any built in RAII types for file handling?*
+
 # Shared Pointers
+
+`shared_ptr` has *transferable* and *non-exclusive* ownership. On destruction
+the `shared_ptr` will check if there are other owners.
+
+**Question 11.3**: *Why not use the more power `shared_ptr` over `unique_ptr` ?*
+
+## Constructing
+
+Same as `unique_ptr`, except you *should* prever `make_shared<T>` over regular
+construction. You will be duplicating allocations if you don't.
+
+**Question 11.4**: *What exactly is the 'control block' referenced in the text?*
+
+Much more details on the internals of `shared_ptr` and the 'control block':
+<https://www.nextptr.com/tutorial/ta1358374985/shared_ptr-basics-and-internals-with-examples>
+
+## Specifying an Allocator
+
+You can specify a custom allocator with `shared_ptr`. A few complicated
+semantics about how to do this, but this section doesn't explain why you
+would want to.
+
+**Question 11.5**: *Why would specify a custom allocator?*
 
 # Weak Pointers
 
