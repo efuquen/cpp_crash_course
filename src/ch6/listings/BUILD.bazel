@@ -4,3 +4,10 @@ cc_binary(
         "mean.cpp",
     ]
 )
+
+cc_binary(
+    name = "simple_unique_pointer",
+    srcs = [
+        "simple_unique_pointer.cpp",
+    ]
+)
