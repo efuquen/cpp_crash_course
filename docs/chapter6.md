@@ -28,3 +28,8 @@ Convert to different types using template functions.
 `static_cast` makes standard conversions that would be allowed implicitly, and
 the reverse of those conversions.
 
+`reintepret_cast` gives you full control on casting, i.e. allowing casting a
+number to a specific pointer in memory.
+
+`narrow_cast` like a `static_cast` but will throw an exception if the value
+will be narrowed.
