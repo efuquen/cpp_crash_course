@@ -44,3 +44,21 @@ through generic programming.
 The type in the template parameter can be deduce by C++, similar to using
 `auto`. However sometimes its not possible for the compiler to deduce
 the type on return types.
+
+# Type Checking in Templates
+
+Template type checks happen late in compilation, leading to cryptic error
+messages. Comparison to duck-typing doing checks at runtime vs compilation.
+
+# Concepts
+
+Template parameter checking at point of instation as opposed to point
+of first use.
+
+concepts are a function that return True if they pass some set of
+static validations through type traits and/or requirements.
+
+The sole stated benefit is to get better compiler errors, with a lot
+more code and compilation complexity. But, many concepts will be
+defined by the standard library and should avoid you having to write
+your own.
