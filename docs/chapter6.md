@@ -33,3 +33,14 @@ number to a specific pointer in memory.
 
 `narrow_cast` like a `static_cast` but will throw an exception if the value
 will be narrowed.
+
+# mean: A Template Function Example
+
+Illustrative example with a `mean` function how templates can reduce code
+through generic programming.
+
+## Template Type Deduction
+
+The type in the template parameter can be deduce by C++, similar to using
+`auto`. However sometimes its not possible for the compiler to deduce
+the type on return types.

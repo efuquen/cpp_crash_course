@@ -1,0 +1,6 @@
+cc_binary(
+    name = "mean",
+    srcs = [
+        "mean.cpp",
+    ]
+)
